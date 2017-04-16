@@ -1,4 +1,6 @@
-
+'''
+Trains a simple deep NN on the MNIST dataset.
+'''
 
 from __future__ import print_function
 import numpy as np
@@ -12,9 +14,9 @@ from keras.utils import np_utils
 
 from keras.layers.advanced_activations import PReLU
 
-batch_size = 128
+batch_size = 150
 nb_classes = 10
-nb_epoch = 20
+nb_epoch = 30
 
 # the data, shuffled and split between train and test sets
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
@@ -37,13 +39,16 @@ x = inputs
 
 i = 0
 
-while i<3:
+
+while i<2:
 	
 	x = Dense(254)(x)
 	x = PReLU()(x)#Non-linearily
-	x = Dropout(0.5)(x)
+	x = Dropout(0.25)(x)
 	i = i +1
 
+x = Dense(254)(x)
+x = PReLU()(x)#Non-linearily
 
 predictions = Dense(nb_classes, activation='softmax')(x)
     
